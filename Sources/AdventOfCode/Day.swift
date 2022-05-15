@@ -1,13 +1,7 @@
-//
-//  Day.swift
-//  AdventOfCode
-//
-
-import Foundation
-
-protocol Day: AnyObject {
-    init()
-
-    func part1(_ input: String) -> CustomStringConvertible
-    func part2(_ input: String) -> CustomStringConvertible
+protocol Day {
+    associatedtype Input
+    associatedtype Output
+    
+    static func part1(_ input: Input) -> Output
+    static func part2(_ input: Input) -> Output
 }

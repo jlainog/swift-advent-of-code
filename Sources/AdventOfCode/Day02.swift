@@ -1,8 +1,22 @@
-//
-//  File.swift
-//  
-//
-//  Created by Jaime Andres Laino Guerra on 14/05/22.
-//
+import Algorithms
 
-import Foundation
+struct Day02: Day {
+    enum Direction: String, CaseIterable {
+        case forward, down, up
+    }
+    struct Instruction: Equatable {
+        var direction: Direction
+        var value: Int
+    }
+
+    typealias Input = [Instruction]
+    typealias Output = Int
+    
+    static func part1(_ input: Input) -> Int {
+        0
+    }
+    
+    static func part2(_ input: Input) -> Int {
+        0
+    }
+}

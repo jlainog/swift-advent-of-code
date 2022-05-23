@@ -4,7 +4,7 @@ import Parsing
 
 private let parser = Parse {
     Many {
-        Parse(Day02.Instruction.init) {
+        Parse(Day02.Command.init) {
             Day02.Direction.parser(of: Substring.self)
             Whitespace()
             Digits()
@@ -21,28 +21,46 @@ final class Day02Tests: XCTestCase {
         XCTAssertEqual(
             try parser.parse("""
             forward 5
-            down 4
+            down 5
+            forward 8
             up 3
+            down 8
+            forward 2
             """),
             [
-                .init(direction: .forward, value: 5),
-                .init(direction: .down, value: 4),
-                .init(direction: .up, value: 3),
+                Day02.Command.init(.forward, 5),
+                Day02.Command.init(.down, 5),
+                Day02.Command.init(.forward, 8),
+                Day02.Command.init(.up, 3),
+                Day02.Command.init(.down, 8),
+                Day02.Command.init(.forward, 2),
             ]
         )
     }
     
-//    func testPart1() throws {
-//        let input = [
-//        ]
-//        XCTAssertEqual(SUT.part1(input), 7)
-//    }
-//
-//    func testPart2() {
-//        let input = [
-//        ]
-//        XCTAssertEqual(SUT.part2(input), 5)
-//    }
+    func testPart1() throws {
+        let input = [
+            Day02.Command.init(.forward, 5),
+            .init(.down, 5),
+            .init(.forward, 8),
+            .init(.up, 3),
+            .init(.down, 8),
+            .init(.forward, 2),
+        ]
+        XCTAssertEqual(SUT.part1(input), 150)
+    }
+
+    func testPart2() {
+        let input = [
+            Day02.Command.init(.forward, 5),
+            .init(.down, 5),
+            .init(.forward, 8),
+            .init(.up, 3),
+            .init(.down, 8),
+            .init(.forward, 2),
+        ]
+        XCTAssertEqual(SUT.part2(input), 900)
+    }
     
     func testSolveGivenInput() throws {
         print("\n\(String(describing: SUT.self)) - Solutions")
